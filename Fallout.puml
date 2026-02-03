@@ -1,0 +1,83 @@
+@startuml FalloutGame
+
+skinparam classAttributeIconSize 0
+
+class AppalachiaTrail {
+    +textSpeed : int
+    +GREEN : String
+    +main(String[] args) : void
+    +play(Scanner) : void
+    +buySupplies(Scanner, Inventory) : void
+    +traverseStory(Scanner, TreeNodeStory, Inventory) : void
+    +slowPrint(String) : void
+    +slowPrintInLine(String) : void
+    +sleep(int) : void
+    +clearScreen() : void
+}
+
+class Inventory {
+    -stuff : Map<String, Integer>
+    +Inventory(int, int, int, int, int)
+    +get(String) : int
+    +add(String, int) : void
+    +use(String, int) : boolean
+    +printInventory() : void
+    +hasEnough(String, int) : boolean
+    +set(String, int) : void
+}
+
+class PartyMember {
+    -name : String
+    -health : int
+    -radiation : int
+    -alive : boolean
+    -sick : boolean
+    +PartyMember(String)
+    +status() : String
+    +isSick() : boolean
+    +makeSick() : void
+    +cure() : void
+    +getName() : String
+    +getHealth() : int
+    +isAlive() : boolean
+    +damage(int) : void
+    +rad(int) : void
+    +heal(int) : void
+    +toString() : String
+}
+
+class TreeNodeStory {
+    -text : String
+    -left : TreeNodeStory
+    -right : TreeNodeStory
+    -item : String
+    -amount : int
+    +TreeNodeStory(String)
+    +TreeNodeStory(String, String, int)
+    +getItem() : String
+    +getAmount() : int
+    +getText() : String
+    +getLeft() : TreeNodeStory
+    +getRight() : TreeNodeStory
+    +setLeft(TreeNodeStory) : void
+    +setRight(TreeNodeStory) : void
+    +isLeaf() : boolean
+}
+
+class Story {
+    +bunkerEvent() : TreeNodeStory
+}
+
+class Args {
+    +console : Scanner
+    +rand : Random
+}
+
+AppalachiaTrail --> Inventory
+AppalachiaTrail --> TreeNodeStory
+AppalachiaTrail --> PartyMember
+AppalachiaTrail --> Args
+AppalachiaTrail --> Story
+Story --> TreeNodeStory
+
+@enduml
